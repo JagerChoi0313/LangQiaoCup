@@ -188,55 +188,177 @@
 //7 6 5
 
 
+//#include <iostream>
+//#include <vector>
+//using namespace std;
+//
+//int main()
+//{
+//	
+//	int n, m;
+//	cin >> n >> m;
+//	vector<vector<int>>matrix(n, vector<int>(m, 0));
+//
+//	//定义四个方向
+//	int dx[4] = { 0,1,0,-1 };
+//	int dy[4] = { 1,0,-1,0 };
+//
+//	//初始位置和方向
+//	int x = 0;
+//	int y = 0;
+//	int dir = 0;//0表示向右，1向下，2向左，3向上
+//
+//	for (int i = 1; i <= n * m; i++)
+//	{
+//		matrix[x][y] = i;
+//
+//		//计算下一个位置
+//		int nx = x + dx[dir];
+//		int ny = y + dy[dir];
+//
+//		//如果下一个位置越界或已经被填充，则改变方向
+//		if (nx < 0 || nx >= n || ny < 0 || ny >= m || matrix[nx][ny] != 0)
+//		{
+//			dir = (dir + 1) % 4;//改变方向
+//			nx = x + dx[dir];
+//			ny = y + dy[dir];
+//		}
+//
+//		x = nx;
+//		y = ny;
+//	}
+//
+//	//输出结果
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			cout << matrix[i][j] << " ";
+//		}
+//		cout << endl;
+//	}
+//	return 0;
+//}
+
+
+//#include <iostream>
+//#include <vector>
+//#include <iomanip>
+//using namespace std;
+//
+//double matrix[12][12];
+//double sum = 0.0;
+//
+//void Sum()
+//{
+//
+//	double sum = 0;
+//	for (int i = 0; i <5; i++) {
+//		for (int j = i + 1; j <= 11 - i; j++) {
+//			sum += matrix[i][j];
+//		}
+//	}
+//
+//
+//	cout << fixed << setprecision(1) << sum << endl;
+//}
+//
+//void Average()
+//{
+//	cout << fixed << setprecision(1) << sum / 30 << endl;
+//
+//}
+//
+//int main()
+//{
+//	char letter;
+//	cin >> letter;
+//
+//
+//	for (int i = 0; i < 12; i++)
+//	{
+//		for (int j = 0; j < 12; j++)
+//		{
+//			cin >> matrix[i][j];
+//		}
+//	}
+//
+//	if (letter == 'S')
+//	{
+//		Sum();
+//	}
+//	else if(letter=='M')
+//	{
+//		Average();
+//	}
+//
+//	return 0;
+//}
+//
+
+
+
+
+//772. 只出现一次的字符
+//题目
+//提交记录
+//讨论
+//题解
+//视频讲解
+//
+//给你一个只包含小写字母的字符串。
+//
+//请你判断是否存在只在字符串中出现过一次的字符。
+//
+//如果存在，则输出满足条件的字符中位置最靠前的那个。
+//
+//如果没有，输出 no。
+//
+//输入格式
+//共一行，包含一个由小写字母构成的字符串。
+//
+//数据保证字符串的长度不超过 100000
+//。
+//
+//输出格式
+//输出满足条件的第一个字符。
+//
+//如果没有，则输出 no。
+//
+//输入样例：
+//abceabcd
+//输出样例：
+//e
+
 #include <iostream>
-#include <vector>
+#include <string>
+#include <unordered_map>
 using namespace std;
 
 int main()
 {
-	
-	int n, m;
-	cin >> n >> m;
-	vector<vector<int>>matrix(n, vector<int>(m, 0));
+	string s;
+	cin >> s;
 
-	//定义四个方向
-	int dx[4] = { 0,1,0,-1 };
-	int dy[4] = { 1,0,-1,0 };
+	unordered_map<char, int>count;
 
-	//初始位置和方向
-	int x = 0;
-	int y = 0;
-	int dir = 0;//0表示向右，1向下，2向左，3向上
-
-	for (int i = 1; i <= n * m; i++)
+	//统计每个字符出现次数
+	for (char ch : s)
 	{
-		matrix[x][y] = i;
+		count[ch]++;
+	}
+	//按顺序遍历字符串，找到第一个出现次数为1的字符
 
-		//计算下一个位置
-		int nx = x + dx[dir];
-		int ny = y + dy[dir];
-
-		//如果下一个位置越界或已经被填充，则改变方向
-		if (nx < 0 || nx >= n || ny < 0 || ny >= m || matrix[nx][ny] != 0)
+	for (char ch : s)
+	{
+		if (count[ch] == 1)
 		{
-			dir = (dir + 1) % 4;//改变方向
-			nx = x + dx[dir];
-			ny = y + dy[dir];
+			cout << ch << endl;
+			return 0;
 		}
-
-		x = nx;
-		y = ny;
 	}
 
-	//输出结果
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			cout << matrix[i][j] << " ";
-		}
-		cout << endl;
-	}
+	//如果没找到
+	cout << "no" << endl;
 	return 0;
 }
-
