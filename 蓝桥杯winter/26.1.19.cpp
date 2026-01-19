@@ -45,14 +45,14 @@
 //
 
 
-#include <iostream>
-#include <cmath>
-using namespace std;
-
-int N;
-const int X = 1e5 + 10;
-int arr1[X];
-int arr2[X];
+//#include <iostream>
+//#include <cmath>
+//using namespace std;
+//
+//int N;
+//const int X = 1e5 + 10;
+//int arr1[X];
+//int arr2[X];
 
 //时间复杂度为O(x)
 // 
@@ -87,62 +87,156 @@ int arr2[X];
 //}
 
 //时间复杂度为O(√x)
-void perfect(int x)
-{
-    if (x <= 1)
-    {
-        cout << x << " is not perfect" << endl;
-        return;
-    }
+//void perfect(int x)
+//{
+//    if (x <= 1)
+//    {
+//        cout << x << " is not perfect" << endl;
+//        return;
+//    }
+//
+//    int sum = 1;//1总是真因子
+//    int count = 0;
+//
+//    //只遍历到sqrt(x),因为因子是成对出现的
+//    for (int i = 2; i * i <= x; i++)
+//    {
+//        if (x % i == 0)
+//        {
+//            //存储第一个因子
+//            arr2[count] = i;
+//            count++;
+//            sum += i;
+//
+//            //如果i和x/i不是同一个数，存储另一个因子
+//
+//            if (i != x / i)
+//            {
+//                arr2[count] = x / i;
+//                count++;
+//                sum += x / i;
+//            }
+//
+//        }
+//    }
+//
+//    if (sum == x)
+//    {
+//        cout << x << " is perfect" << endl;
+//    }
+//    else
+//    {
+//        cout << x << " is not perfect" << endl;
+//    }
+//}
+//
+//int main()
+//{
+//    cin >> N;
+//    for (int i = 0; i < N; i++)
+//    {
+//        int x;
+//        cin >> x;
+//        arr1[i] = x;
+//    }
+//
+//    for (int j = 0; j < N; j++)
+//    {
+//        perfect(arr1[j]);
+//    }
+//    return 0;
+//}
 
-    int sum = 1;//1总是真因子
-    int count = 0;
 
-    //只遍历到sqrt(x),因为因子是成对出现的
-    for (int i = 2; i * i <= x; i++)
-    {
-        if (x % i == 0)
-        {
-            //存储第一个因子
-            arr2[count] = i;
-            count++;
-            sum += i;
+//蛇形矩阵
+//题目
+//提交记录
+//讨论
+//题解
+//视频讲解
+//
+//输入两个整数 n
+//和 m
+//，输出一个 n
+//行 m
+//列的矩阵，将数字 1
+//到 n×m
+//按照回字蛇形填充至矩阵中。
+//
+//具体矩阵形式可参考样例。
+//
+//输入格式
+//输入共一行，包含两个整数 n
+//和 m
+//。
+//
+//输出格式
+//输出满足要求的矩阵。
+//
+//矩阵占 n
+//行，每行包含 m
+//个空格隔开的整数。
+//
+//数据范围
+//1≤n, m≤100
+//
+//输入样例：
+//3 3
+//输出样例：
+//1 2 3
+//8 9 4
+//7 6 5
 
-            //如果i和x/i不是同一个数，存储另一个因子
 
-            if (i != x / i)
-            {
-                arr2[count] = x / i;
-                count++;
-                sum += x / i;
-            }
-
-        }
-    }
-
-    if (sum == x)
-    {
-        cout << x << " is perfect" << endl;
-    }
-    else
-    {
-        cout << x << " is not perfect" << endl;
-    }
-}
+#include <iostream>
+#include <vector>
+using namespace std;
 
 int main()
 {
-    cin >> N;
-    for (int i = 0; i < N; i++)
-    {
-        int x;
-        cin >> x;
-        arr1[i] = x;
-    }
+	
+	int n, m;
+	cin >> n >> m;
+	vector<vector<int>>matrix(n, vector<int>(m, 0));
 
-    for (int j = 0; j < N; j++)
-    {
-        perfect(arr1[j]);
-    }
-    return 0;
+	//定义四个方向
+	int dx[4] = { 0,1,0,-1 };
+	int dy[4] = { 1,0,-1,0 };
+
+	//初始位置和方向
+	int x = 0;
+	int y = 0;
+	int dir = 0;//0表示向右，1向下，2向左，3向上
+
+	for (int i = 1; i <= n * m; i++)
+	{
+		matrix[x][y] = i;
+
+		//计算下一个位置
+		int nx = x + dx[dir];
+		int ny = y + dy[dir];
+
+		//如果下一个位置越界或已经被填充，则改变方向
+		if (nx < 0 || nx >= n || ny < 0 || ny >= m || matrix[nx][ny] != 0)
+		{
+			dir = (dir + 1) % 4;//改变方向
+			nx = x + dx[dir];
+			ny = y + dy[dir];
+		}
+
+		x = nx;
+		y = ny;
+	}
+
+	//输出结果
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cout << matrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+	return 0;
 }
+
