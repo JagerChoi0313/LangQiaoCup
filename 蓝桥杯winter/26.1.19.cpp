@@ -330,35 +330,35 @@
 //输出样例：
 //e
 
-#include <iostream>
-#include <string>
-#include <unordered_map>
-using namespace std;
-
-int main()
-{
-	string s;
-	cin >> s;
-
-	unordered_map<char, int>count;
-
-	//统计每个字符出现次数
-	for (char ch : s)
-	{
-		count[ch]++;
-	}
-	//按顺序遍历字符串，找到第一个出现次数为1的字符
-
-	for (char ch : s)
-	{
-		if (count[ch] == 1)
-		{
-			cout << ch << endl;
-			return 0;
-		}
-	}
-
-	//如果没找到
-	cout << "no" << endl;
-	return 0;
-}
+//#include <iostream>
+//#include <string>
+//#include <unordered_map>
+//using namespace std;
+//
+//int main()
+//{
+//	string s;
+//	cin >> s;
+//
+//	unordered_map<char, int>count;
+//
+//	//统计每个字符出现次数
+//	for (char ch : s)
+//	{
+//		count[ch]++;
+//	}
+//	//按顺序遍历字符串，找到第一个出现次数为1的字符
+//
+//	for (char ch : s)
+//	{
+//		if (count[ch] == 1)
+//		{
+//			cout << ch << endl;
+//			return 0;
+//		}
+//	}
+//
+//	//如果没找到
+//	cout << "no" << endl;
+//	return 0;
+//}
