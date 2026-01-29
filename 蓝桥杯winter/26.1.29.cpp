@@ -77,3 +77,45 @@
 //    cout << max_value << endl;
 //    return 0;
 //}
+
+#include <iostream>
+#include <unordered_set>
+#include <cctype>
+
+using namespace std;
+
+bool hasuniquechar(const string& str)
+{
+    unordered_set<char>judge;
+
+    for (char c : str)
+    {
+        c = tolower(c);
+
+        if (judge.find(c) != judge.end())
+        {
+            return false;
+        }
+
+        judge.insert(c);
+    }
+
+    return true;
+}
+
+int main()
+{
+    string input;
+    cin >> input;
+
+    if (hasuniquechar(input))
+    {
+        cout << "YES" << endl;
+    }
+    else
+    {
+        cout << "NO" << endl;
+    }
+
+    return 0;
+}
