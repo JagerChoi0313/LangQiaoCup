@@ -36,5 +36,8 @@
     <ClCompile Include="26.1.30.cpp">
       <Filter>头文件</Filter>
     </ClCompile>
+    <ClCompile Include="26.2.1.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
