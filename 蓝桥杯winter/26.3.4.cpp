@@ -86,53 +86,53 @@
 //最大运行时间：1 秒
 //最大运行内存：256 MB
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
-int main()
-{
-    // 请在此输入您的代码
-    int N;
-    int g = 0;
-    cin >> N;
-    vector<int>A(N, 0);
-
-    for (int i = 0; i < N; i++)
-    {
-        cin >> A[i];
-        g = __gcd(g, A[i]);
-    }
-
-    if (g != 1)
-    {
-        cout << "INF";
-        return 0;
-    }
-
-    const int Max = 10000;
-    vector<bool>dp(Max + 1, false);
-    dp[0] = true;
-
-    for (int i = 0; i < N; i++)
-    {
-        for (int j = A[i]; j <= Max; j++)
-        {
-            dp[j] = dp[j] || dp[j - A[i]];
-        }
-    }
-
-    int ans = 0;
-
-    for (int i = 1; i <= Max; i++)
-    {
-        if (!dp[i])
-        {
-            ans++;
-        }
-    }
-
-    cout << ans << endl;
-
-    return 0;
-}
+//#include <iostream>
+//#include <vector>
+//#include <algorithm>
+//using namespace std;
+//int main()
+//{
+//    // 请在此输入您的代码
+//    int N;
+//    int g = 0;
+//    cin >> N;
+//    vector<int>A(N, 0);
+//
+//    for (int i = 0; i < N; i++)
+//    {
+//        cin >> A[i];
+//        g = __gcd(g, A[i]);
+//    }
+//
+//    if (g != 1)
+//    {
+//        cout << "INF";
+//        return 0;
+//    }
+//
+//    const int Max = 10000;
+//    vector<bool>dp(Max + 1, false);
+//    dp[0] = true;
+//
+//    for (int i = 0; i < N; i++)
+//    {
+//        for (int j = A[i]; j <= Max; j++)
+//        {
+//            dp[j] = dp[j] || dp[j - A[i]];
+//        }
+//    }
+//
+//    int ans = 0;
+//
+//    for (int i = 1; i <= Max; i++)
+//    {
+//        if (!dp[i])
+//        {
+//            ans++;
+//        }
+//    }
+//
+//    cout << ans << endl;
+//
+//    return 0;
+//}

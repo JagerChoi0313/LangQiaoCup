@@ -134,68 +134,68 @@
 //2
 
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <climits>
-using namespace std;
-
-struct Interval {
-    int l, r;
-    int len;
-};
-
-int main()
-{
-    // 请在此输入您的代码
-    int n, m;
-    cin >> n >> m;
-
-    vector<Interval>intervals(n);
-    for (int i = 0; i < n; i++)
-    {
-        cin >> intervals[i].l >> intervals[i].r;
-        intervals[i].len = intervals[i].r - intervals[i].l;
-    }
-
-    sort(intervals.begin(), intervals.end(), [](const Interval& a, const Interval& b) {
-        return a.l < b.l;
-        });
-
-    int ans = INT_MAX;
-
-    for (int i = 0; i + m - 1 < n; i++)
-    {
-        int max_l = intervals[i + m - 1].l;//窗口右端左端点最大
-        int min_r = intervals[i].r;//窗口内右端最小
-
-        for (int j = i; j <= i + m; j++)
-        {
-            min_r = min(min_r, intervals[j].r);
-        }
-
-        if (max_l <= min_r)
-        {
-            int max_len = INT_MIN;
-            int min_len = INT_MAX;
-
-            for (int j = i; j < i + m - 1; j++)
-            {
-                max_len = max(max_len, intervals[j].len);
-                min_len = min(min_len, intervals[j].len);
-            }
-            ans = min(ans, max_len - min_len);
-        }
-    }
-
-    if (ans == INT_MAX)
-    {
-        cout << -1 << endl;
-    }
-    else {
-        cout << ans << endl;
-    }
-
-
-    return 0;
-}
+//#include <iostream>
+//#include <vector>
+//#include <algorithm>
+//#include <climits>
+//using namespace std;
+//
+//struct Interval {
+//    int l, r;
+//    int len;
+//};
+//
+//int main()
+//{
+//    // 请在此输入您的代码
+//    int n, m;
+//    cin >> n >> m;
+//
+//    vector<Interval>intervals(n);
+//    for (int i = 0; i < n; i++)
+//    {
+//        cin >> intervals[i].l >> intervals[i].r;
+//        intervals[i].len = intervals[i].r - intervals[i].l;
+//    }
+//
+//    sort(intervals.begin(), intervals.end(), [](const Interval& a, const Interval& b) {
+//        return a.l < b.l;
+//        });
+//
+//    int ans = INT_MAX;
+//
+//    for (int i = 0; i + m - 1 < n; i++)
+//    {
+//        int max_l = intervals[i + m - 1].l;//窗口右端左端点最大
+//        int min_r = intervals[i].r;//窗口内右端最小
+//
+//        for (int j = i; j <= i + m; j++)
+//        {
+//            min_r = min(min_r, intervals[j].r);
+//        }
+//
+//        if (max_l <= min_r)
+//        {
+//            int max_len = INT_MIN;
+//            int min_len = INT_MAX;
+//
+//            for (int j = i; j < i + m - 1; j++)
+//            {
+//                max_len = max(max_len, intervals[j].len);
+//                min_len = min(min_len, intervals[j].len);
+//            }
+//            ans = min(ans, max_len - min_len);
+//        }
+//    }
+//
+//    if (ans == INT_MAX)
+//    {
+//        cout << -1 << endl;
+//    }
+//    else {
+//        cout << ans << endl;
+//    }
+//
+//
+//    return 0;
+//}

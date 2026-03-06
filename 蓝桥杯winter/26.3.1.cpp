@@ -28,60 +28,60 @@
 //1
 //3
 
-#include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <algorithm>
-using namespace std;
-int main()
-{
-    // 请在此输入您的代码
-    int N, D, K;
-    cin >> N >> D >> K;
-
-    //存储每个帖子id所用的时间
-    unordered_map<int, vector<int>>mp;
-
-    for (int i = 0; i < N; i++)
-    {
-        int ts, id;
-        cin >> ts >> id;
-        mp[id].push_back(ts);
-    }
-
-    vector<int>result;
-
-    //遍历每个帖子
-    for (auto& p : mp)
-    {
-        int id = p.first;
-        vector<int>& times = p.second;//这是指针数组吗
-
-        sort(times.begin(), times.end());
-
-        int l = 0;
-        for (int r = 0; r < times.size(); r++)
-        {
-            while (times[r] - times[l] >= D)
-            {
-                l++;
-            }
-
-            if (r - l + 1 >= K)
-            {
-                result.push_back(id);
-                break;
-            }
-        }
-    }
-
-
-
-    sort(result.begin(), result.end());
-
-    for (int id : result)
-    {
-        cout << id << endl;
-    }
-    return 0;
-}
+//#include <iostream>
+//#include <vector>
+//#include <unordered_map>
+//#include <algorithm>
+//using namespace std;
+//int main()
+//{
+//    // 请在此输入您的代码
+//    int N, D, K;
+//    cin >> N >> D >> K;
+//
+//    //存储每个帖子id所用的时间
+//    unordered_map<int, vector<int>>mp;
+//
+//    for (int i = 0; i < N; i++)
+//    {
+//        int ts, id;
+//        cin >> ts >> id;
+//        mp[id].push_back(ts);
+//    }
+//
+//    vector<int>result;
+//
+//    //遍历每个帖子
+//    for (auto& p : mp)
+//    {
+//        int id = p.first;
+//        vector<int>& times = p.second;//这是指针数组吗
+//
+//        sort(times.begin(), times.end());
+//
+//        int l = 0;
+//        for (int r = 0; r < times.size(); r++)
+//        {
+//            while (times[r] - times[l] >= D)
+//            {
+//                l++;
+//            }
+//
+//            if (r - l + 1 >= K)
+//            {
+//                result.push_back(id);
+//                break;
+//            }
+//        }
+//    }
+//
+//
+//
+//    sort(result.begin(), result.end());
+//
+//    for (int id : result)
+//    {
+//        cout << id << endl;
+//    }
+//    return 0;
+//}

@@ -42,64 +42,64 @@
 //18
 
 
-#include <iostream>
-#include <vector>
-
-using namespace std;
-int main()
-{
-    // 请在此输入您的代码
-    int n, m, k;
-    cin >> n >> m >> k;
-
-    vector<int>insert(n);
-    for (int i = 0; i < n; i++)
-    {
-        cin >> insert[i];
-    }
-
-    vector<int>change(n);
-    for (int i = 0; i < n; i++)
-    {
-        change[i] = (insert[i] >= m) ? 1 : 0;
-    }
-
-
-    vector<int> pre(n + 1, 0);
-    for (int i = 1; i <= n; i++)
-    {
-        pre[i] = pre[i - 1] + change[i - 1];
-    }
-
-    long long ans = 0;
-    int r = 0;
-
-
-    for (int l = 0; l < n; l++)
-    {
-        if (r < l + k - 1)
-        {
-            r = l + k - 1;
-        }
-
-        if (r >= n)
-        {
-            break;
-        }
-
-        while (r < n && pre[r + 1] - pre[l] < k)
-        {
-            r++;
-        }
-
-        if (r >= n)
-        {
-            break;
-        }
-
-        ans = ans + n - r;
-    }
-
-    cout << ans << endl;
-    return 0;
-}
+//#include <iostream>
+//#include <vector>
+//
+//using namespace std;
+//int main()
+//{
+//    // 请在此输入您的代码
+//    int n, m, k;
+//    cin >> n >> m >> k;
+//
+//    vector<int>insert(n);
+//    for (int i = 0; i < n; i++)
+//    {
+//        cin >> insert[i];
+//    }
+//
+//    vector<int>change(n);
+//    for (int i = 0; i < n; i++)
+//    {
+//        change[i] = (insert[i] >= m) ? 1 : 0;
+//    }
+//
+//
+//    vector<int> pre(n + 1, 0);
+//    for (int i = 1; i <= n; i++)
+//    {
+//        pre[i] = pre[i - 1] + change[i - 1];
+//    }
+//
+//    long long ans = 0;
+//    int r = 0;
+//
+//
+//    for (int l = 0; l < n; l++)
+//    {
+//        if (r < l + k - 1)
+//        {
+//            r = l + k - 1;
+//        }
+//
+//        if (r >= n)
+//        {
+//            break;
+//        }
+//
+//        while (r < n && pre[r + 1] - pre[l] < k)
+//        {
+//            r++;
+//        }
+//
+//        if (r >= n)
+//        {
+//            break;
+//        }
+//
+//        ans = ans + n - r;
+//    }
+//
+//    cout << ans << endl;
+//    return 0;
+//}
